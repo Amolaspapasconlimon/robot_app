@@ -1,0 +1,219 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap");
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+/* ---------- Página y tokens ---------- */
+.login-page {
+  /* Paleta (de la más clara a la más oscura en uso) */
+  --cream: #f8dcb4;
+  --sand: #f1bc6f;
+  --honey: #eeac4c;
+  --clay: #af8867;
+  --amber: #ea9c29;
+  /* Café muy oscuro, solo para texto y contornos */
+  --ink: #2e2012;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100dvh;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  font-family: "JetBrains Mono", monospace;
+  color: var(--ink);
+  background: var(--cream);
+}
+
+.login-page *,
+.login-page *::before,
+.login-page *::after {
+  box-sizing: border-box;
+}
+
+/* ---------- Tarjeta principal ---------- */
+.RobotRequestPage-RRP {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: min(26rem, 100%);
+  padding: 1rem;
+  border: 3px solid var(--ink);
+  border-radius: 16px;
+  background-color: var(--amber);
+  box-shadow: 8px 8px 0 var(--ink);
+}
+
+/* Paneles internos (bienvenida y buscador) */
+.login-things,
+.RobotFrame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  background-color: var(--cream);
+  text-align: center;
+}
+
+.RobotFrame {
+  gap: 1rem;
+}
+
+/* ---------- Panel de bienvenida ---------- */
+.login-things {
+  gap: 0.75rem;
+  font-size: 1rem;
+}
+
+.login-things h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.login-things button {
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  background-color: var(--honey);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: transform 0.12s ease, box-shadow 0.12s ease,
+    background-color 0.15s ease;
+}
+
+.login-things button:hover {
+  background-color: var(--amber);
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.login-things button:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--ink);
+}
+
+/* ---------- Buscador: input + botón como una sola pieza ---------- */
+.RobotSearchFrame {
+  width: 100%;
+}
+
+.RobotSearchFrame form {
+  display: flex;
+  width: 100%;
+  overflow: hidden; /* las esquinas redondeadas recortan input y botón */
+  border-radius: 10px;
+}
+
+.RobotSearchFrame form:focus-within {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.RobotSearchFrame input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.7rem 0.75rem;
+  border: 0;
+  background-color: rgba(255, 255, 255, 0.55);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.RobotSearchFrame input::placeholder {
+  color: rgba(46, 32, 18, 0.55);
+}
+
+.RobotSearchFrame input:focus {
+  outline: none; /* el foco lo marca el form con :focus-within */
+}
+
+.RobotSearchFrame button {
+  flex-shrink: 0;
+  padding: 0 1rem;
+  border: 0;
+  border-left: 2px solid var(--ink);
+  background-color: var(--honey);
+  color: var(--ink);
+  font-family: inherit;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.RobotSearchFrame button:hover {
+  background-color: var(--amber);
+}
+
+.RobotSearchFrame button:active {
+  background-color: var(--clay);
+}
+
+/* ---------- Resultado ---------- */
+.RobotInfoFrame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 5.5rem; /* evita que la tarjeta "salte" al cambiar el resultado */
+  text-align: center;
+}
+
+.RobotInfoFrame h3 {
+  margin: 0;
+  padding: 4px 0;
+  font-size: 1rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+/* Nombre del robot (cuando hay nombre y mercado) */
+.RobotInfoFrame h3:first-child:not(:last-child) {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* Mercado, o el aviso de "no encontrado", como etiqueta */
+.RobotInfoFrame h3 + h3 {
+  width: fit-content;
+  margin-top: 0.4rem;
+  padding: 4px 14px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background-color: var(--sand);
+  font-weight: 700;
+}
+
+/* ---------- Accesibilidad ---------- */
+.login-things button:focus-visible,
+.RobotSearchFrame button:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .login-things button,
+  .RobotSearchFrame button {
+    transition: none;
+  }
+}
